@@ -44,6 +44,6 @@ jobs:
       uses: docker/build-push-action@v2.8.0
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
-        passowrd: ${{ secrets.DOCKER_PASSWORD }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
         repository: gtechzilla/to-do-app
         tag_with_ref: true
