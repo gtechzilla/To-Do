@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [ubuntu-latest,windows-latest,macos-latest]
+        platform: [ubuntu-latest]
         python-version: ["3.8", "3.9", "3.10"]
     runs-on: ${{ matrix.platform }}
 
@@ -38,3 +38,12 @@ jobs:
     - name: Test with pytest
       run: |
         pytest test.py
+    - name : check if docker is installed
+      run: docker run hello-world
+    - name: push to docker hub
+      uses: docker/build-push-action@v2.8.0
+      with:
+        username: ${{ secret.DOCKER_USERNAME }}
+        passowrd: ${{ secret.DOCKER_PASSWORD }}
+        repository: gtechzilla/to-do-app
+        tag_with_ref: true
